@@ -252,3 +252,14 @@ final class Plugin {
 	
 
 }
+
+
+/**
+ * Enqueue scripts and styles.
+ */
+// function rrf_commerce_plugin_scripts() {
+// 	wp_enqueue_style( 'common-css', plugins_url('./assets/css/common.css', __FILE__));
+	
+// 	wp_enqueue_script( 'slick-js', plugins_url( './assets/js/slick.min.js', __FILE__ ), [ 'jquery' ] );
+// }
+// add_action( 'wp_enqueue_scripts', 'rrf_commerce_plugin_scripts' );
