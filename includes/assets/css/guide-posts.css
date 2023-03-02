@@ -1,0 +1,27 @@
+.single-post-box {
+    display: block;
+    text-align: center;
+    color: #25312D;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.single-post-box:hover h4 {
+    color: #ED8804;
+}
+.single-post-box span {
+    display: block;
+    background: #ED8804;
+    color: #fff;
+    padding: 10px;
+    border-radius: 0 0 4px 4px;
+}
+.single-post-box .inner-post {
+    padding: 20px;
+}
+.single-post-box .inner-post h4 {
+    margin-bottom: 20px;
+}
+.single-post-box .inner-post img {
+    margin-bottom: 15px;
+}

@@ -1,5 +1,5 @@
 <?php
-namespace RRF_Commerce_Addon;
+namespace Admission_Sight_Addon;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -28,7 +28,7 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @var string Minimum Elementor version required to run the addon.
 	 */
-	const MINIMUM_ELEMENTOR_VERSION = '3.5.0';
+	const MINIMUM_ELEMENTOR_VERSION = '3.0.9';
 
 	/**
 	 * Minimum PHP Version
@@ -44,7 +44,7 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access private
 	 * @static
-	 * @var \RRF_Commerce_Addon\Plugin The single instance of the class.
+	 * @var \Admission_Sight_Addon\Plugin The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -131,7 +131,7 @@ final class Plugin {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-test-addon' ),
-			'<strong>' . esc_html__( 'Elementor Test Addon', 'elementor-test-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'AdmissionSight Addon', 'elementor-test-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'elementor-test-addon' ) . '</strong>'
 		);
 
@@ -154,7 +154,7 @@ final class Plugin {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-test-addon' ),
-			'<strong>' . esc_html__( 'Elementor Test Addon', 'elementor-test-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'AdmissionSight Addon', 'elementor-test-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'elementor-test-addon' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -178,7 +178,7 @@ final class Plugin {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-test-addon' ),
-			'<strong>' . esc_html__( 'Elementor Test Addon', 'elementor-test-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'AdmissionSight Addon', 'elementor-test-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'elementor-test-addon' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
@@ -203,6 +203,8 @@ final class Plugin {
 		add_action( 'elementor/elements/categories_registered', [$this, 'custom_categories' ]);
 
 		add_action( 'elementor/frontend/after_enqueue_styles', [$this, 'my_plugin_frontend_stylesheets'] );
+
+		add_action( 'elementor/frontend/after_register_scripts', [$this, 'my_plugin_frontend_scripts'] );
 		
 	}
 
@@ -210,9 +212,20 @@ final class Plugin {
 	// To load CSS on all pages
 	public function my_plugin_frontend_stylesheets() {
 
-		wp_register_style( 'common-css', plugins_url( '/assets/css/common.css', __FILE__ ) );
+		wp_register_style( 'bootstrap-css', plugins_url( '/assets/css/bootstrap.min.css', __FILE__ ) );
 
-		wp_enqueue_style( 'common-css' );
+		wp_enqueue_style( 'bootstrap-css' );
+
+	}
+
+	// JS
+	public function my_plugin_frontend_scripts() {
+
+		wp_register_script( 'bootstrap-js', plugins_url( '/assets/js/bootstrap.bundle.min.js', __FILE__ ), [ 'jquery' ], '', true );
+		wp_register_script( 'main-js', plugins_url( '/assets/js/main.js', __FILE__ ), [ 'jquery' ], '', true );
+
+		wp_enqueue_script( 'bootstrap-js' );
+		wp_enqueue_script( 'main-js' );
 
 	}
 	
@@ -222,9 +235,9 @@ final class Plugin {
 	public function custom_categories( $elements_manager ) {
 
 		$elements_manager->add_category(
-			'rrfcommerce',
+			'admissionsight',
 			[
-				'title' => esc_html__( 'RRF Commerce', 'plugin-name' ),
+				'title' => esc_html__( 'AdmissionSight', 'plugin-name' ),
 				'icon' => 'fa fa-plug',
 			]
 		);
@@ -243,9 +256,11 @@ final class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 
-		require_once( __DIR__ . '/widgets/slides.php' );
+		require_once( __DIR__ . '/widgets/guide-posts.php' );
+		require_once( __DIR__ . '/widgets/admission-requirements.php' );
 
-		$widgets_manager->register( new \RRF_Commerce_Addon\RRFCommerce_Slides() );
+		$widgets_manager->register( new \Admission_Sight_Addon\Admission_Sight_Guide_Post() );
+		$widgets_manager->register( new \Admission_Sight_Addon\Admission_Requirements() );
 
 	}
 

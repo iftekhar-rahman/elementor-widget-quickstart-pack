@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Nav tabs*/
+
+#container {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
+}
+
+.tabs-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.tabs-nav li {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fefefe;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  border-color: #34495E;
+  margin-right: 5px;
+}
+
+.tabs-nav a {
+  display: block;
+  padding: 10px 15px;
+  font-weight: bold;
+  color: #fff;
+}
+/* Active tab */
+
+.tabs-nav li.active {
+  background: #FFF;
+  color: #000;
+}
+
+.tabs-nav li.active a {
+  color: inherit;
+}
+/* Tab content */
+
+.tabs-content {
+  border: 1px solid #34495E;
+  padding: 10px;
+  background: #FFF;
+  margin-top: -1px;
+  overflow: hidden;
+}
+
+.tabs-content IMG {
+  margin-right: 10px;
+}
+/* Hide all but first content div */
+
+.tabs-content div:not(:first-child) {
+  display: none;
+}
+
+
+/* Tabs */
+/* .tabs {
+  width: 100%;
+}
+ul#tabs-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+}
+ul#tabs-nav li {
+  font-weight: bold;
+  margin-right: 2px;
+}
+ul#tabs-nav li:hover a,
+ul#tabs-nav li.active a {
+  color: #002368;
+  opacity: 1;
+}
+#tabs-nav li a {
+  text-decoration: none;
+  color: #002368;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: .7;
+}
+.tab-content {
+  padding: 10px;
+  border: 5px solid #09F;
+  background-color: #FFF;
+} */
